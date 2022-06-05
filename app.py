@@ -3,7 +3,7 @@ from pytube import YouTube
 from io import BytesIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "654c0fb4969af9d5s6a9b3edcdc7051b"
+app.config['SECRET_KEY'] = "654c0fb4968af9d5s6a9b3edcdc7051b"
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
@@ -14,7 +14,8 @@ def home():
             url.check_availability()
         except:
             return render_template("error.html")
-        return render_template("download.html", url = url)
+        return render_template("download.html", url)
+    return render_template("home.html")
 
 @app.route("/download", methods = ["GET", "POST"])
 def download_video():
