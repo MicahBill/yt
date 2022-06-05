@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, send_file, session
 from pytube import YouTube
 from io import BytesIO
+import logging
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "654c0fb3968af9d5e6a9b3edcbc7051b"
@@ -28,6 +29,9 @@ def download_video():
         buffer.seek(0)
         return send_file(buffer, as_attachment=True, download_name="Video - YT2Video.mp4", mimetype="video/mp4")
     return redirect(url_for("home"))
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 if __name__ == '__main__':
     app.run(debug=True)
