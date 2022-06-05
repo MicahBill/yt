@@ -14,7 +14,7 @@ def home():
             url.check_availability()
         except:
             return render_template("error.html")
-        return render_template("download.html", url = url)
+        return render_template("download.html")
     return render_template("home.html")
 
 @app.route("/download", methods = ["GET", "POST"])
